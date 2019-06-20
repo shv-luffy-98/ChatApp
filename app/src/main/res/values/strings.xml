@@ -8,4 +8,6 @@
     <string name="reg">Register</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
+
+    <string name="settings">Settings</string>
 </resources>

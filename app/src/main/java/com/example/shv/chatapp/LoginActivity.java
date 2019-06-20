@@ -8,10 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.example.shv.chatapp.ChatList.ChatListItem;
+import com.example.shv.chatapp.FriendsList.User;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText username, password;
@@ -22,11 +22,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Login");
-
         ChatListItem.defaultImage = BitmapFactory.decodeResource(getResources(), R.drawable.user);
+        User.defaultImage = BitmapFactory.decodeResource(getResources(), R.drawable.user);
         username = findViewById(R.id.logInUserName);
         password = findViewById(R.id.logInPassword);
         logInButton = findViewById(R.id.logInButton);
@@ -37,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user.length() == 0 || pass.length() == 0) {
             Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_LONG).show();
         } else {
-            Intent i = new Intent(getApplicationContext(), ChatsList.class);
+            Intent i = new Intent(getApplicationContext(), HomeActivity.class);
             startActivityForResult(i, 0);
         }
     }
