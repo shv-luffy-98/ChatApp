@@ -81,11 +81,15 @@ public class ChatsList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout:
-                Intent intent = new Intent();
-                setResult(R.integer.LogOut, intent);
-                finish();
+                logOut();
                 return true;
         }
         return false;
+    }
+
+    public void logOut() {
+        Intent intent = new Intent();
+        setResult(R.integer.LogOut, intent);
+        finish();
     }
 }

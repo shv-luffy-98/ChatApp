@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.example.shv.chatapp.ChatList.ChatListItem;
 
@@ -32,8 +33,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void logInClick(View v) {
-        Intent i = new Intent(getApplicationContext(), ChatsList.class);
-        startActivityForResult(i, 0);
+        String user = username.getText().toString(), pass = password.getText().toString();
+        if (user.length() == 0 || pass.length() == 0) {
+            Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_LONG).show();
+        } else {
+            Intent i = new Intent(getApplicationContext(), ChatsList.class);
+            startActivityForResult(i, 0);
+        }
+    }
+
+    public void register(View v) {
+        Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(i);
     }
 
     @Override

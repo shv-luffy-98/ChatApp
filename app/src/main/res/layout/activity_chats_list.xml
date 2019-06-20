@@ -9,7 +9,8 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="8dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -28,9 +29,10 @@
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="UserName"
+                android:layout_marginStart="30dp"
+                android:text="@string/uname"
                 android:textColor="#fff"
+                android:textSize="24sp"
                 android:textStyle="bold" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
