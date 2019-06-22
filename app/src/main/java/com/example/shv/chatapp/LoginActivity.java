@@ -33,9 +33,21 @@ public class LoginActivity extends AppCompatActivity {
         String user = username.getText().toString(), pass = password.getText().toString();
         if (user.length() == 0 || pass.length() == 0) {
             Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_LONG).show();
-        } else {
-            Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-            startActivityForResult(i, 0);
+        } else {Authenticate r = new Authenticate(getApplicationContext(),new Callback(){
+            @Override
+            public void call(Object rr) {
+                AppResponse rrr = (AppResponse) rr;
+                if(rrr.token == null){
+                    Toast.makeText(getApplicationContext(), rrr.error, Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), rrr.token, Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            }
+        },"login");
+            r.doRequest(user,pass);
         }
     }
 

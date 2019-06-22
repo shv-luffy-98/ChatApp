@@ -26,9 +26,21 @@ public class RegisterActivity extends AppCompatActivity {
         if (nameStr.length() == 0 || emailStr.length() == 0 || user.length() == 0 || pass.length() == 0) {
             Toast.makeText(getApplicationContext(), "All feilds are required", Toast.LENGTH_LONG).show();
         } else {
-            Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-            startActivity(i);
-            finish();
+            Authenticate r = new Authenticate(getApplicationContext(),new Callback(){
+                @Override
+                public void call(Object rr) {
+                    AppResponse rrr = (AppResponse) rr;
+                    if(rrr.token == null){
+                        Toast.makeText(getApplicationContext(), rrr.error, Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), rrr.token, Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                }
+            },"register");
+            r.doRequest(user,pass);
         }
     }
 }
