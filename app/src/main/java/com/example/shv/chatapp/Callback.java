@@ -1,5 +1,6 @@
 package com.example.shv.chatapp;
 
 public class Callback {
-    public void call(Object args){}
+    public void success(Object args){}
+    public void error(String error){}
 }

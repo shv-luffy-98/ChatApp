@@ -28,16 +28,21 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             Authenticate r = new Authenticate(getApplicationContext(),new Callback(){
                 @Override
-                public void call(Object rr) {
+                public void success(Object rr) {
                     AppResponse rrr = (AppResponse) rr;
                     if(rrr.token == null){
                         Toast.makeText(getApplicationContext(), rrr.error, Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(getApplicationContext(), rrr.token, Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                        i.putExtra("token",rrr.token);
                         startActivity(i);
                         finish();
                     }
+                }
+                @Override
+                public void error(String error){
+                    Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
                 }
             },"register");
             r.doRequest(user,pass);

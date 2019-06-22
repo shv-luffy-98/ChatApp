@@ -26,17 +26,18 @@ class Authenticate {
     }
     public void doRequest(final String username, final String password){
         rq = Volley.newRequestQueue(cc);
-        String url = "http://192.168.43.59:8080/"+route;
+        String url = "http://"+ServerIP.IP+":8080/"+route;
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 ToJSON tj = new ToJSON(response);
                 AppResponse rr = tj.convert(AppResponse.class);
-                cb.call(rr);
+                cb.success(rr);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error){
+                cb.error(error.getMessage());
             }
         }){
             @Override
